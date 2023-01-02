@@ -42,14 +42,19 @@ def rename(wantedSlot):
     
     sounds = os.listdir(f"{path}\\sound\\bank")
     #Checks how many sound effects it has to replace
+    try:    
+        sounds = os.listdir(f"{path}\\sound\\bank")
+        #Checks how many sound effects it has to replace
 
-    for folder in sounds:
-        if folder == "fighter":
-            os.rename(f"{path}\\sound\\bank\\{folder}\\se_{character}_{currentSlot}.nus3audio",f"{path}\\sound\\bank\\{folder}\\se_{character}_c{wantedSlot}.nus3audio")
-        elif folder == "fighter_voice":
-            os.rename(f"{path}\\sound\\bank\\{folder}\\vc_{character}_{currentSlot}.nus3audio",f"{path}\\sound\\bank\\{folder}\\vc_{character}_c{wantedSlot}.nus3audio")
-    #renames the things. It's different depending on what is being changed.
-
+        for folder in sounds:
+            if folder == "fighter":
+                os.rename(f"{path}\\sound\\bank\\{folder}\\se_{character}_{currentSlot}.nus3audio",f"{path}\\sound\\bank\\{folder}\\se_{character}_c{wantedSlot}.nus3audio")
+            elif folder == "fighter_voice":
+                os.rename(f"{path}\\sound\\bank\\{folder}\\vc_{character}_{currentSlot}.nus3audio",f"{path}\\sound\\bank\\{folder}\\vc_{character}_c{wantedSlot}.nus3audio")
+        #renames the things. It's different depending on what is being changed.
+    except FileNotFoundError:
+        pass
+        
 pg.set_global_icon(icon= "D:\\Code\\Python\\ReSlotter\\Smash_Ball.ico")
 layout = [
     [
