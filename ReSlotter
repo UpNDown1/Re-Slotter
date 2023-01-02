@@ -50,27 +50,27 @@ def rename(wantedSlot):
             os.rename(f"{path}\\sound\\bank\\{folder}\\vc_{character}_{currentSlot}.nus3audio",f"{path}\\sound\\bank\\{folder}\\vc_{character}_c{wantedSlot}.nus3audio")
     #renames the things. It's different depending on what is being changed.
 
-pg.set_global_icon(icon= "D:\\Code\\Python\\GUIStuff\\Smash_Ball.ico")
+pg.set_global_icon(icon= "D:\\Code\\Python\\ReSlotter\\Smash_Ball.ico")
 layout = [
     [
         pg.Text("Mod Folder: "),
         pg.In(size = (25,1),enable_events=True,key="-FOLDER-"),
         pg.FolderBrowse(),
-    ],
+    ], #Makes the place to select the folder to choose.
     [
         pg.Text("Select the color you wish to put the mod on.")
     ],
     [
-        pg.Radio("Color 1", "COLOR", default = False, key = "C1"),
-        pg.Radio("Color 2", "COLOR", default = False, key = "C2"),
-        pg.Radio("Color 3", "COLOR", default = False, key = "C3"),
-        pg.Radio("Color 4", "COLOR", default = False, key = "C4"),
+        pg.Radio("Color 1", "SLOT", default = False, key = "C1"),
+        pg.Radio("Color 2", "SLOT", default = False, key = "C2"),
+        pg.Radio("Color 3", "SLOT", default = False, key = "C3"),
+        pg.Radio("Color 4", "SLOT", default = False, key = "C4"),
     ],
-    [
-        pg.Radio("Color 5", "COLOR", default = False, key = "C5"),
-        pg.Radio("Color 6", "COLOR", default = False, key = "C6"),
-        pg.Radio("Color 7", "COLOR", default = False, key = "C7"),
-        pg.Radio("Color 8", "COLOR", default = False, key = "C8"),
+    [ # These are the radio buttons that tell what slot the mod will be put on
+        pg.Radio("Color 5", "SLOT", default = False, key = "C5"),
+        pg.Radio("Color 6", "SLOT", default = False, key = "C6"),
+        pg.Radio("Color 7", "SLOT", default = False, key = "C7"),
+        pg.Radio("Color 8", "SLOT", default = False, key = "C8"),
     ],
     [
         pg.T("When the above is selected then press this button ↓")
@@ -89,8 +89,8 @@ while True:
             break
         if event == '-BUTT-':
             global path
-            path = values["-FOLDER-"]
-            getInfo()
+            path = values["-FOLDER-"] # Passes the path from the folder specified
+            getInfo() #Sets some variables and gets some information about the mod
             if values["C1"]:
                 rename("00")
             elif values["C2"]:
@@ -107,6 +107,7 @@ while True:
                 rename("06")
             elif values ["C8"]:
                 rename("07")
+            #Gives a number according to the decision on the radio buttons
             else:
                 raise Exception 
             pg.Popup("Change successfully.")
@@ -117,3 +118,4 @@ while True:
     except Exception:
         pg.Popup("Please select a color to change the color to.")
 window.close()
+#Once the program is closed, then closes the program.
